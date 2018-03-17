@@ -5,7 +5,7 @@ There's a lot of ways one might wish to customize optimization-based feature
 visualization. You might wish to change the objective, the way your image is
 paramaterized, certain kinds of transformations it is robust to, or more.
 
-As a result, it's hard to create an abstraction that gracefullystands up to all
+As a result, it's hard to create an abstraction that gracefully stands up to all
 the directions might want to explore. Typically, we end up just writing new
 functions to perform the visualization we want.
 
