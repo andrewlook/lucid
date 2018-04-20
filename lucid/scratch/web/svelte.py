@@ -1,4 +1,5 @@
 from __future__ import print_function
+from builtins import bytes, str
 import random
 import json
 import tempfile
@@ -57,10 +58,10 @@ def SvelteComponent(name, path):
   def inner(data):
     id_str = name + "_" + hex(random.randint(0, 1e8))[2:]
     html = _template \
-        .replace("$js", js_content) \
-        .replace("$name", name) \
-        .replace("$data", json.dumps(data)) \
-        .replace("$id", id_str)
+        .replace("$js", str(js_content)) \
+        .replace("$name", str(name)) \
+        .replace("$data", str(json.dumps(data))) \
+        .replace("$id", str(id_str))
     _display_html(html)
   return inner
 
