@@ -58,10 +58,10 @@ def SvelteComponent(name, path):
   def inner(data):
     id_str = name + "_" + hex(random.randint(0, 1e8))[2:]
     html = _template \
-        .replace("$js", str(js_content)) \
-        .replace("$name", str(name)) \
-        .replace("$data", str(json.dumps(data))) \
-        .replace("$id", str(id_str))
+        .replace(str("$js"), str(js_content)) \
+        .replace(str("$name"), str(name)) \
+        .replace(str("$data"), str(json.dumps(data))) \
+        .replace(str("$id"), str(id_str))
     _display_html(html)
   return inner
 
