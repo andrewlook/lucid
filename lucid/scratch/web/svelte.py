@@ -16,7 +16,7 @@ from lucid.misc.io.reading import read
 
 _svelte_temp_dir = tempfile.mkdtemp(prefix="svelte_")
 
-_template = u"""
+_template = str("""
   <div id='$id'></div>
   <script>
   $js
@@ -27,11 +27,11 @@ _template = u"""
         data: $data,
       });
   </script>
- """
+ """)
 
 
 def build_svelte(html_fname):
-  js_fname = html_fname.replace(".html", ".js")
+  js_fname = str(html_fname).replace(str(".html"), str(".js"))
   cmd = "svelte compile --format iife " + html_fname + " > " + js_fname
   print(cmd)
   try:
@@ -57,9 +57,9 @@ def SvelteComponent(name, path):
   elif path[-5:] == ".html":
     print("Trying to build svelte component from html...")
     js_path = build_svelte(path)
-  js_content = read(js_path)
+  js_content = read(str(js_path))
   def inner(data):
-    id_str = name + "_" + hex(random.randint(0, 1e8))[2:]
+    id_str = str(name) + str("_") + hex(random.randint(0, 1e8))[2:]
     html = _template.replace(str(u"$js"), str(js_content)) 
     html = _template.replace(str(u"$name"), str(name)) 
     html = _template.replace(str(u"$data"), str(json.dumps(data))) 
