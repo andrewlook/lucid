@@ -1,5 +1,8 @@
 from __future__ import print_function
-from builtins import bytes, str
+from __future__ import unicode_literals
+from builtins import hex
+from builtins import bytes
+from builtins import str
 import random
 import json
 import tempfile
