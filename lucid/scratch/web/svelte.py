@@ -13,7 +13,7 @@ from lucid.misc.io.reading import read
 
 _svelte_temp_dir = tempfile.mkdtemp(prefix="svelte_")
 
-_template = """
+_template = u"""
   <div id='$id'></div>
   <script>
   $js
@@ -57,11 +57,16 @@ def SvelteComponent(name, path):
   js_content = read(js_path)
   def inner(data):
     id_str = name + "_" + hex(random.randint(0, 1e8))[2:]
-    html = _template \
-        .replace(str("$js"), str(js_content)) \
-        .replace(str("$name"), str(name)) \
-        .replace(str("$data"), str(json.dumps(data))) \
-        .replace(str("$id"), str(id_str))
+    html = _template.replace(str(u"$js"), str(js_content)) 
+    html = _template.replace(str(u"$name"), str(name)) 
+    html = _template.replace(str(u"$data"), str(json.dumps(data))) 
+    html = _template.replace(str(u"$id"), str(id_str))
+
+    html2 = _template \
+        .replace(str(u"$js"), str(js_content)) \
+        .replace(str(u"$name"), str(name)) \
+        .replace(str(u"$data"), str(json.dumps(data))) \
+        .replace(str(u"$id"), str(id_str))
     _display_html(html)
   return inner
 
